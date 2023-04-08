@@ -1,13 +1,17 @@
 #include DataSource1D.h
 
 DataSource1D::DataSource1D() {
-    cotation = vector<int>(10, 0);
+    cotation = new int[10](0);
     effectifTotal = 0;
 }
 
-void DataSource1D::incrementer(int i, int value = 1) {
-    cotation[i] += value;
-    effectifTotal += value;
+DataSource1D::~DataSource1D() {
+    delete[] cotation;
+}
+
+void DataSource1D::incrementer(int i, int valeur) {
+    cotation[i] += valeur;
+    effectifTotal += valeur;
 }
 
 const vector<int>& DataSource1D::getCotation() const {

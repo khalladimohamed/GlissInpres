@@ -5,7 +5,6 @@
 #include <string.h>
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -14,15 +13,17 @@ class DataSource1D
 {
     
 private:
-    vector<int> cotation;
+    int* cotation;
     int effectifTotal;
 
 public:
     DataSource1D();
 
-    void incrementer(int i, int value = 1);
+    ~DataSource1D();
 
-    const vector<int>& getCotation() const;
+    void incrementer(int i, int valeur);
+
+    const int* getCotation() const;
 
     int getEffectifTotal() const;
 
