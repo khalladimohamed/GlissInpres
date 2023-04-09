@@ -2,12 +2,13 @@
 #define DATASOURCE1D
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <fstream>
 #include <cmath>
 #include <iostream>
 
 using namespace std;
-
 
 class DataSource1D
 {
@@ -19,6 +20,8 @@ private:
 public:
     DataSource1D();
 
+    DataSource1D(int* cotation, int effectifTotal);
+
     ~DataSource1D();
 
     void incrementer(int i, int valeur);
@@ -27,6 +30,6 @@ public:
 
     int getEffectifTotal() const;
 
-}
+};
 
 #endif
