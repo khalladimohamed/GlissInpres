@@ -22,8 +22,6 @@ public:
 
     DataSource1D(int* cotation, int effectifTotal);
 
-    ~DataSource1D();
-
     void incrementer(int i, int valeur);
 
     const int* getCotation() const;

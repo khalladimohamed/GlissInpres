@@ -2,53 +2,61 @@
 
 
 Echantillon::Echantillon(const string& fichier, int colonne) {
-    m_donnees = nullptr;
-    m_taille = 0;
+
+    int* m_donnees = new int[10] {0};
+    int m_taille = 10;
 
     ifstream fichierEntree(fichier);
     
-    if (!fichierEntree) {
+    if (!fichierEntree) 
+    {
         cerr << "Erreur : Impossible d'ouvrir le fichier " << fichier << endl;
         exit(EXIT_FAILURE);
     }
 
-    int donnee;
+    string ligne;
+    int numLigne = 0;
 
-    while (fichierEntree >> donnee) {
-        
-        int i = 0;
-        int* newDonnees = new int[m_taille + 1];
-        
-        for (i = 0; i < m_taille; i++) {
-            newDonnees[i] = m_donnees[i];
+    while (getline(fichierEntree, ligne)) 
+    {
+        stringstream ss(ligne);
+        string valeur;
+        int colonneActuelle = 0;
+
+        numLigne++;
+
+        while (getline(ss, valeur, ';')) 
+        {
+            if (colonneActuelle == colonne && numLigne != 1) 
+            {
+                int donnee = stoi(valeur);
+                m_donnees[donnee - 1]++;
+            }
+            
+            colonneActuelle++;
         }
-        
-        newDonnees[i] = donnee;
-
-        if (m_donnees != nullptr) {
-            delete[] m_donnees;
-        }
-
-        m_donnees = newDonnees;
-        m_taille++;
     }
 
-//isoler juste les valeur de la colonne choisie (utiliser colonne)
+    
+    //Test - Affichage
+    cout << "Debut : test de la decoupe (classe echantillon)" << endl;
+    
+    for (int i = 0; i < m_taille; i++) {
+        cout << "Cote " << i+1 << " : " << m_donnees[i] << endl;
+    }
 
-//creer un tableau avec 10 case et  Chaque case correspond
-//à une cotation différente et son contenu au nombre de personnes ayant attribué
-//cette cote.
+    cout << "Effectif " << " : " << numLigne - 1 << endl;
+
+    cout << "Fin : test de la decoupe (classe echantillon)" << endl;
+    cout << endl;
+    cout << endl;
+    //Test - Affichage
 
 
-    dataSource = DataSource1D(m_donnees, m_taille);
-}
+    dataSource = DataSource1D(m_donnees, numLigne);
 
+    EtudeStatistique = EtudeStatistique1D(&dataSource);
 
-Echantillon::~Echantillon() {
-    delete[] m_donnees;
-}
+    EtudeStatistique.Affiche();
 
-
-EtudeStatistique1D& Echantillon::effectuerEtudeStatistique() {
-    return *(new EtudeStatistique1D(dataSource));
 }

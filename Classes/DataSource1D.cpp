@@ -13,11 +13,6 @@ DataSource1D::DataSource1D(int* cotation, int effectifTotal) {
 }
 
 
-DataSource1D::~DataSource1D() {
-    delete[] cotation;
-}
-
-
 void DataSource1D::incrementer(int i, int valeur) {
     cotation[i] += valeur;
     effectifTotal += valeur;

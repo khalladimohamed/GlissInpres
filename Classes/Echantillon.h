@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cmath>
 #include <iostream>
+#include <sstream>
 
 #include <DataSource1D.h>
 #include <EtudeStatistique1D.h>
@@ -18,15 +19,10 @@ class Echantillon
     
 private:
     DataSource1D dataSource;
-    int* m_donnees;
-    int m_taille;
+    EtudeStatistique1D EtudeStatistique;
 
 public:
     Echantillon(const string& fichier, int colonne);
-
-    ~Echantillon();
-
-    EtudeStatistique1D& effectuerEtudeStatistique();
 
 };
 
