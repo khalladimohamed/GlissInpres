@@ -37,6 +37,8 @@ Echantillon::Echantillon(const string& fichier, int colonne) {
         }
     }
 
+    numLigne = numLigne - 1;
+
     
     //Test - Affichage
     cout << "Debut : test de la decoupe (classe echantillon)" << endl;
@@ -45,7 +47,7 @@ Echantillon::Echantillon(const string& fichier, int colonne) {
         cout << "Cote " << i+1 << " : " << m_donnees[i] << endl;
     }
 
-    cout << "Effectif " << " : " << numLigne - 1 << endl;
+    cout << "Effectif " << " : " << numLigne<< endl;
 
     cout << "Fin : test de la decoupe (classe echantillon)" << endl;
     cout << endl;

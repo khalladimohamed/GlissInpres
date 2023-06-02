@@ -30,6 +30,7 @@ void EtudeStatistique1D::calculeMoyenne(DataSource1D* data)
     double somme = 0.0;
     for (int i = 1; i <= 10; ++i) {
         somme += i * data->getCotation()[i-1];
+        cout << "test : " << somme << endl;
     }
     m_moyenne = somme / data->getEffectifTotal();
 }
